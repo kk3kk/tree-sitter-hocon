@@ -54,7 +54,7 @@ module.exports = grammar(json, {
     _value: ($, original) => repeat1(choice(
       original,
       seq($.number, $.unit),
-      $.unquoted_string, 
+      $.unquoted_string,
       $.multiline_string,
       $.substitution,
     )),
@@ -74,7 +74,7 @@ module.exports = grammar(json, {
         '$', ':', '=', ',', '+',
         '#', '`', '^', '?', '!',
         '?', '*', '&', '"', '\\{',
-        '\\}', '\\[', '\\]', '\\\\', '\\n', '/', ' '
+        '\\}', '\\[', '\\]', '\\\\', '\\r', '\\n', '/', ' '
       ]
       const allowed_symbol = '[^' + reserved_symbols.join('') + ']'
 

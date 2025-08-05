@@ -1,0 +1,272 @@
+================================================================================
+Basic Objects
+================================================================================
+
+{}
+
+---
+
+(document (object))
+
+================================================================================
+Basic Key-Value Pairs
+================================================================================
+
+{
+  key = value
+}
+
+---
+
+(document (object (pair (path (unquoted_path)) (value (unquoted_string)))))
+
+================================================================================
+String Values
+================================================================================
+
+{
+  name = "John Doe"
+  greeting = "Hello, World!"
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))))
+
+================================================================================
+Number Values
+================================================================================
+
+{
+  age = 25
+  price = 19.99
+  negative = -42
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (number)))
+    (pair (path (unquoted_path)) (value (number)))
+    (pair (path (unquoted_path)) (value (number)))))
+
+================================================================================
+Boolean-like Values
+================================================================================
+
+{
+  enabled = true
+  disabled = false
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (true)))
+    (pair (path (unquoted_path)) (value (false)))))
+
+================================================================================
+Array Values
+================================================================================
+
+{
+  numbers = [1, 2, 3, 4, 5]
+  strings = ["a", "b", "c"]
+  mixed = [1, "hello", true]
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (array (number) (number) (number) (number) (number))))
+    (pair (path (unquoted_path)) (value (array (string) (string) (string))))
+    (pair (path (unquoted_path)) (value (array (number) (string) (true))))))
+
+================================================================================
+Nested Objects
+================================================================================
+
+{
+  person = {
+    name = "Alice"
+    age = 30
+    address = {
+      street = "123 Main St"
+      city = "Springfield"
+    }
+  }
+}
+
+---
+
+(document
+  (object
+    (pair
+      (path (unquoted_path))
+      (value (object
+        (pair (path (unquoted_path)) (value (string)))
+        (pair (path (unquoted_path)) (value (number)))
+        (pair (path (unquoted_path)) (value (object
+          (pair (path (unquoted_path)) (value (string)))
+          (pair (path (unquoted_path)) (value (string)))))))))))
+
+================================================================================
+Colon Separator
+================================================================================
+
+{
+  key: value
+  "quoted key": "quoted value"
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (unquoted_string)))
+    (pair (path (string)) (value (string)))))
+
+================================================================================
+Plus Equals Operator
+================================================================================
+
+{
+  list = [1, 2]
+  list += [3, 4]
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (array (number) (number))))
+    (pair (path (unquoted_path)) (value (array (number) (number))))))
+
+================================================================================
+Secret Configuration Fields
+================================================================================
+
+{
+  api_key = "sk-1234567890abcdef"
+  password = "mySecretPassword123"
+  secret = "jwt-secret-key-here"
+  token = "Bearer abc123xyz789"
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))))
+
+================================================================================
+Mixed Configuration Values
+================================================================================
+
+{
+  api_key = "sk-1234567890abcdef"
+  password = "mySecretPassword123"
+  secret = "jwt-secret-key-here"
+  token = "Bearer abc123xyz789"
+  normal_field = "this is not a secret"
+  count = 42
+  enabled = true
+}
+
+---
+
+(document
+  (object
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (string)))
+    (pair (path (unquoted_path)) (value (number)))
+    (pair (path (unquoted_path)) (value (true)))))
+
+================================================================================
+API Key Configuration
+================================================================================
+
+api_key = "sk-1234567890abcdef"
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (string))))
+
+================================================================================
+Password Configuration
+================================================================================
+
+password = "mySecretPassword123"
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (string))))
+
+================================================================================
+JWT Secret Configuration
+================================================================================
+
+secret = "jwt-secret-key-here"
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (string))))
+
+================================================================================
+Bearer Token Configuration
+================================================================================
+
+token = "Bearer abc123xyz789"
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (string))))
+
+================================================================================
+Normal String Field
+================================================================================
+
+normal_field = "this is not a secret"
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (string))))
+
+================================================================================
+Number Configuration
+================================================================================
+
+count = 42
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (number))))
+
+================================================================================
+Boolean Configuration
+================================================================================
+
+enabled = true
+
+---
+
+(document
+  (pair (path (unquoted_path)) (value (true))))
