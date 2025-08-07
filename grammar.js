@@ -33,17 +33,14 @@ module.exports = grammar(json, {
 
     object: $ => seq("{", commaOrNewLineSeparated(choice($.include, $.pair)), "}"),
 
-    pair: $ => seq(
-      $.path,
-      $.value
+    pair: $ => choice(
+      seq(field('key', $.path), $._pair_separator, field('value', $.value)),
+      seq(field('key', $.path), field('value', $.object))
     ),
+
+    value: $ => $._value,
 
     path: $ => choice(repeat1(choice($.string, $.unquoted_path)), $.number),
-
-    value: $ => choice(
-      seq($._pair_separator, $._value),
-      $.object
-    ),
 
     _pair_separator: _ => choice(':', '=', '+='),
 
@@ -91,7 +88,7 @@ module.exports = grammar(json, {
         '$', ':', '=', ',', '+',
         '#', '`', '^', '?', '!',
         '?', '*', '&', '"', '\\{',
-        '\\}', '\\[', '\\]', '\\\\', '\\n', '/', '.'
+        '\\}', '\\[', '\\]', '\\\\', '\\r', '\\n', '/', '.'
       ]
       const allowed_symbol = '[^' + reserved_symbols.join('') + ']'
       const allowed_symbol_except = symbol => '[^' + [...reserved_symbols, symbol].join('') + ']'

@@ -270,3 +270,17 @@ enabled = true
 
 (document
   (pair (path (unquoted_path)) (value (true))))
+
+================================================================================
+Bearer Token as unquoted string
+================================================================================
+
+token = Bearer abc123xyz789
+
+---
+
+(document
+  (pair
+    (path (unquoted_path))
+    (value (unquoted_string) (unquoted_string))))
+
