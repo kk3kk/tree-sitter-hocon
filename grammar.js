@@ -45,7 +45,7 @@ module.exports = grammar(json, {
     _pair_separator: _ => choice(':', '=', '+='),
 
     array: $ => seq(
-      "[", commaOrNewLineSeparated($._value), "]"
+      "[", commaOrNewLineSeparated($.value), "]"
     ),
 
     _value: ($, original) => repeat1(choice(
@@ -103,7 +103,7 @@ module.exports = grammar(json, {
       // Unquoted path can not begin with word 'include' followed by a space character.
       const unquoted_path = new RegExp(
         '(/|i|in|inc|incl|inclu|includ|' +
-          '(i|in|inc|incl|inclu|ilclud)/|' +
+          '(i|in|inc|incl|inclu|includ)/|' +
           '(i|in|inc|incl|inclu|includ)/' + allowed_symbol + rest_symbols + '|' +
           '(' + [
               '[0-9a-hj-zA-Z_]',

@@ -84,9 +84,9 @@ Array Values
 
 (document
   (object
-    (pair (path (unquoted_path)) (value (array (number) (number) (number) (number) (number))))
-    (pair (path (unquoted_path)) (value (array (string) (string) (string))))
-    (pair (path (unquoted_path)) (value (array (number) (string) (true))))))
+    (pair (path (unquoted_path)) (value (array (value (number)) (value (number)) (value (number)) (value (number)) (value (number)))))
+    (pair (path (unquoted_path)) (value (array (value (string)) (value (string)) (value (string)))))
+    (pair (path (unquoted_path)) (value (array (value (number)) (value (string)) (value (true)))))))
 
 ================================================================================
 Nested Objects
@@ -145,8 +145,8 @@ Plus Equals Operator
 
 (document
   (object
-    (pair (path (unquoted_path)) (value (array (number) (number))))
-    (pair (path (unquoted_path)) (value (array (number) (number))))))
+    (pair (path (unquoted_path)) (value (array (value (number)) (value (number)))))
+    (pair (path (unquoted_path)) (value (array (value (number)) (value (number)))))))
 
 ================================================================================
 Secret Configuration Fields
